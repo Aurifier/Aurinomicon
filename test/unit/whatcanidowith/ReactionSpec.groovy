@@ -21,6 +21,6 @@ class ReactionSpec extends Specification {
         reaction = new Reaction(name: "stuff")
 
         then:
-        reaction.validate();
+        reaction.validate()
     }
 }

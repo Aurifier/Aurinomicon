@@ -52,6 +52,11 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 
         compile "org.springframework:spring-orm:$springVersion"
+        test "org.gebish:geb-spock:0.10.0"
+        test "org.seleniumhq.selenium:selenium-support:2.44.0"
+        test "org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0"
+        test "org.seleniumhq.selenium:selenium-firefox-driver:2.44.0"
+        test "org.seleniumhq.selenium:selenium-chrome-driver:2.44.0"
     }
 
     plugins {
@@ -61,12 +66,14 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ":scaffolding:2.1.0"
         compile ':cache:1.1.6'
-        compile ":asset-pipeline:1.8.7"
+        compile ":asset-pipeline:2.1.1"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.3" // or ":hibernate:3.6.10.15"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
+
+        test ":geb:0.10.0"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
