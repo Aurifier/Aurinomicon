@@ -5,8 +5,11 @@ import geb.Module
 class AddResourceModule extends Module {
     static content = {
         resourceName {$("input", name: "resourceName")}
-        submit(to: MainPage) {
-            $("input", value: "Add Resource")
-        }
+        submit {$("button", text: "Add Resource")}
+    }
+
+    void addResource(String addMe) {
+        resourceName.value(addMe)
+        submit.click()
     }
 }

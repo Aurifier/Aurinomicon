@@ -1,8 +1,6 @@
 package whatcanidowith
 
 import geb.spock.GebSpec
-import spock.lang.Ignore
-import whatcanidowith.pages.GooglePage
 import whatcanidowith.pages.MainPage
 
 class WebPageSpec extends GebSpec {
@@ -13,18 +11,24 @@ class WebPageSpec extends GebSpec {
             at MainPage
     }
 
-    @Ignore
-    def "adding a result should save it in the database"() {
+    def "adding a resource should save it in the database"() {
         given:
+            def resourceName = "A test resource"
             to MainPage
 
         expect:
             at MainPage
 
         when:
-            addResource.resourceName.value("")
+            addResourceForm.addResource(resourceName)
 
         then:
-            assert 1
+            waitFor{at MainPage}
+
+        when:
+            searchResourceForm.searchResource(resourceName)
+
+        then:
+            searchResourceForm.hasResource(resourceName)
     }
 }
