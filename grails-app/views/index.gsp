@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta name="layout" content="main"/>
-		<title>What Can I Do With...?</title>
+		<title>The Aurinomicon</title>
 	</head>
 	<body>
         <form>
