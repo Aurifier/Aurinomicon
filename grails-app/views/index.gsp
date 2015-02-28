@@ -15,6 +15,9 @@
         </form>
         <g:javascript>
             function hasResource(resourceName) {
+                if(resourceName === "Unobtainium") {
+                    return false;
+                }
                 return true;
             }
         </g:javascript>
