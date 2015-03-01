@@ -7,18 +7,29 @@
 	<body>
         <form>
             <input type="text" name="search" />
-            <button>Search</button>
+            <button type="button" onclick="searchResource(this.form.search.value)">Search</button>
         </form>
         <form>
             <input type="text" name="resourceName" />
-            <button>Add Resource</button>
+            <button type="button" onclick="addResource(this.form.resourceName.value)">Add Resource</button>
         </form>
+        <div id="cy"></div>
+        <script src="js/jquery-2.1.3.js"></script>
+        <script src="js/cytoscape.js"></script>
         <g:javascript>
+            $('#cy').cytoscape({});
+            function addResource(name) {
+                var cy = $('#cy').cytoscape('get');
+                cy.add({group: "nodes", data: {name: name}});
+            }
             function hasResource(resourceName) {
-                if(resourceName === "Unobtainium") {
-                    return false;
+                var cy = $('#cy').cytoscape('get');
+                var nodes = cy.filter("node[name = '" + resourceName + "']");
+                if (nodes.size() > 0) {
+                    return true;
                 }
-                return true;
+
+                return false;
             }
         </g:javascript>
 	</body>

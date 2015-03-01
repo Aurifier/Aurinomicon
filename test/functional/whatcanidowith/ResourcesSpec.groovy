@@ -41,7 +41,6 @@ class ResourcesSpec extends GebSpec {
             !searchResourceForm.hasResource(resourceName)
     }
 
-    @Ignore
     def "if another resource hasn't been added it shouldn't be in the database either"() {
         given:
             def resourceName = "Baking Soda"
