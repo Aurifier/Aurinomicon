@@ -21,6 +21,10 @@
                 var cy = $('#cy').cytoscape('get');
                 cy.add({group: "nodes", data: {name: name}});
             }
+            function searchResource(name) {
+                var cy = $('#cy').cytoscape('get');
+                cy.add({group: "nodes", data: {name: "Ash"}});
+            }
             function hasResource(resourceName) {
                 var cy = $('#cy').cytoscape('get');
                 var nodes = cy.filter("node[name = '" + resourceName + "']");

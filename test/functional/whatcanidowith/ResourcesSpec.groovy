@@ -55,4 +55,21 @@ class ResourcesSpec extends GebSpec {
         then:
             !searchResourceForm.hasResource(resourceName)
     }
+
+    def "an added resource should persist through reloading the page"() {
+        given:
+            def resourceName = "Ash"
+            to MainPage
+
+        expect:
+            at MainPage
+
+        when:
+            addResourceForm.addResource(resourceName)
+            to MainPage
+            searchResourceForm.searchResource(resourceName)
+
+        then:
+            searchResourceForm.hasResource(resourceName)
+    }
 }
