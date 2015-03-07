@@ -4,6 +4,7 @@ import geb.spock.GebSpec
 import spock.lang.Ignore
 import whatcanidowith.pages.MainPage
 
+//TODO: DRY up some of these test pairs
 class ResourcesSpec extends GebSpec {
     def "adding a resource should save it in the database"() {
         given:
@@ -59,6 +60,23 @@ class ResourcesSpec extends GebSpec {
     def "an added resource should persist through reloading the page"() {
         given:
             def resourceName = "Ash"
+            to MainPage
+
+        expect:
+            at MainPage
+
+        when:
+            addResourceForm.addResource(resourceName)
+            to MainPage
+            searchResourceForm.searchResource(resourceName)
+
+        then:
+            searchResourceForm.hasResource(resourceName)
+    }
+
+    def "some other added resources should also persist"() {
+        given:
+            def resourceName = "Ketchup"
             to MainPage
 
         expect:

@@ -19,11 +19,15 @@
             $('#cy').cytoscape({});
             function addResource(name) {
                 var cy = $('#cy').cytoscape('get');
-                cy.add({group: "nodes", data: {name: name}});
+                $.post('<g:createLink uri="/resources" />', {name: name});
             }
             function searchResource(name) {
                 var cy = $('#cy').cytoscape('get');
-                cy.add({group: "nodes", data: {name: "Ash"}});
+                $.getJSON('<g:createLink uri="/resources/" />', function(resources) {
+                    for(var i = 0; i < resources.length; i++)
+                        cy.add({group: "nodes", data: {name: resources[i].name}});
+                    }
+                );
             }
             function hasResource(resourceName) {
                 var cy = $('#cy').cytoscape('get');
