@@ -14,8 +14,7 @@
             <button type="button" onclick="addResource(this.form.resourceName.value)">Add Resource</button>
         </form>
         <div id="cy"></div>
-        <script src="js/jquery-2.1.3.js"></script>
-        <script src="js/cytoscape.js"></script>
+        <asset:javascript src="cytoscape.js" />
         <g:javascript>
             $('#cy').cytoscape({});
             function addResource(name) {
