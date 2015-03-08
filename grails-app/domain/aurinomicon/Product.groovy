@@ -1,4 +1,4 @@
-package whatcanidowith
+package aurinomicon
 
 class Product {
     Reaction reaction

@@ -1,7 +1,6 @@
-package whatcanidowith
+package aurinomicon
 
 import grails.test.mixin.TestFor
-import spock.lang.Ignore
 import spock.lang.Specification
 
 /**

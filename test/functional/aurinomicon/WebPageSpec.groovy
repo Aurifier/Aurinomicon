@@ -1,7 +1,7 @@
-package whatcanidowith
+package aurinomicon
 
 import geb.spock.GebSpec
-import whatcanidowith.pages.MainPage
+import aurinomicon.pages.MainPage
 
 class WebPageSpec extends GebSpec {
     def "page has the correct title"() {

@@ -1,8 +1,7 @@
-package whatcanidowith
+package aurinomicon
 
 import geb.spock.GebSpec
-import spock.lang.Ignore
-import whatcanidowith.pages.MainPage
+import aurinomicon.pages.MainPage
 
 //TODO: DRY up some of these test pairs
 class ResourcesSpec extends GebSpec {

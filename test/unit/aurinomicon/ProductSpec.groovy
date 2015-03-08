@@ -1,4 +1,4 @@
-package whatcanidowith
+package aurinomicon
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor

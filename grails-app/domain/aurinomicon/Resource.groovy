@@ -1,4 +1,4 @@
-package whatcanidowith
+package aurinomicon
 
 @grails.rest.Resource(uri = '/resources', formats = ['json', 'xml'])
 class Resource {

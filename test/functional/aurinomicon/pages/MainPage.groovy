@@ -1,4 +1,4 @@
-package whatcanidowith.pages
+package aurinomicon.pages
 
 import geb.Page
 
