@@ -32,8 +32,10 @@
                 var cy = $('#cy').cytoscape('get');
                 $.getJSON('<g:createLink uri="/resources/" />', function(resources) {
                     for(var i = 0; i < resources.length; i++)
-                        cy.add({group: "nodes", data: {name: resources[i].name}});
-                        cy.layout({name: 'grid'});
+                        if(name === resources[i].name) {
+                            cy.add({group: "nodes", data: {name: resources[i].name}});
+                            cy.layout({name: 'grid'});
+                        }
                     }
                 );
             }

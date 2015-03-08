@@ -15,15 +15,12 @@ class ResourcesSpec extends GebSpec {
 
         when:
             addResourceForm.addResource(resourceName)
-
-        then:
-            waitFor{at MainPage}
-
-        when:
             searchResourceForm.searchResource(resourceName)
 
         then:
-            searchResourceForm.hasResource(resourceName)
+            waitFor {
+                searchResourceForm.hasResource(resourceName)
+            }
     }
 
     def "if a resource has not been added should not be in the database"() {
@@ -88,5 +85,24 @@ class ResourcesSpec extends GebSpec {
 
         then:
             searchResourceForm.hasResource(resourceName)
+    }
+
+    def "only resources matching the search string should be visible"() {
+        given:
+            def resourceName = "foofoo"
+            def otherResourceName = "dumb stuff"
+            to MainPage
+
+        expect:
+            at MainPage
+
+        when:
+            addResourceForm.addResource(resourceName)
+            addResourceForm.addResource(otherResourceName)
+            searchResourceForm.searchResource(resourceName)
+
+        then:
+            searchResourceForm.hasResource(resourceName)
+            !searchResourceForm.hasResource(otherResourceName)
     }
 }
