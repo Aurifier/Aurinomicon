@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100%">
 	<head>
-		<meta name="layout" content="main"/>
+        <meta name="layout" content="main" />
 		<title>The Aurinomicon</title>
 	</head>
-	<body>
+	<body style="height: 100%">
         <form>
             <input type="text" name="search" />
             <button type="button" onclick="searchResource(this.form.search.value)">Search</button>
@@ -13,12 +13,19 @@
             <input type="text" name="resourceName" />
             <button type="button" onclick="addResource(this.form.resourceName.value)">Add Resource</button>
         </form>
-        <div id="cy"></div>
-        <asset:javascript src="cytoscape.js" />
+        <div id="cy" style="height: 100%"></div>
         <g:javascript>
-            $('#cy').cytoscape({});
+            $('#cy').cytoscape({
+                style: [
+                    {
+                        selector: 'node',
+                        css: {
+                            'content': 'data(name)'
+                        }
+                    }
+                ]
+            });
             function addResource(name) {
-                var cy = $('#cy').cytoscape('get');
                 $.post('<g:createLink uri="/resources" />', {name: name});
             }
             function searchResource(name) {
@@ -26,6 +33,7 @@
                 $.getJSON('<g:createLink uri="/resources/" />', function(resources) {
                     for(var i = 0; i < resources.length; i++)
                         cy.add({group: "nodes", data: {name: resources[i].name}});
+                        cy.layout({name: 'grid'});
                     }
                 );
             }
