@@ -1,4 +1,4 @@
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.chrome.ChromeDriver
 
-baseUrl = "http://localhost:8080"
-driver = {new FirefoxDriver()}
+baseUrl = "http://localhost:8081"
+driver = {new ChromeDriver()}
