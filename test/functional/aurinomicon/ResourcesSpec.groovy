@@ -3,7 +3,6 @@ package aurinomicon
 import geb.spock.GebSpec
 import aurinomicon.pages.MainPage
 
-//TODO: DRY up some of these test pairs
 class ResourcesSpec extends GebSpec {
     def "adding a resource should save it in the database"() {
         given:
@@ -23,9 +22,8 @@ class ResourcesSpec extends GebSpec {
             }
     }
 
-    def "if a resource has not been added should not be in the database"() {
+    def "if resources haven't been added they should not be in the database"() {
         given:
-            def resourceName = "Unobtainium"
             to MainPage
 
         expect:
@@ -36,26 +34,13 @@ class ResourcesSpec extends GebSpec {
 
         then:
             !searchResourceForm.hasResource(resourceName)
+
+        where:
+            resourceName << ["Unobtainium", "Baking Soda"]
     }
 
-    def "if another resource hasn't been added it shouldn't be in the database either"() {
+    def "added resources should persist through reloading the page"() {
         given:
-            def resourceName = "Baking Soda"
-            to MainPage
-
-        expect:
-            at MainPage
-
-        when:
-            searchResourceForm.searchResource(resourceName)
-
-        then:
-            !searchResourceForm.hasResource(resourceName)
-    }
-
-    def "an added resource should persist through reloading the page"() {
-        given:
-            def resourceName = "Ash"
             to MainPage
 
         expect:
@@ -68,23 +53,9 @@ class ResourcesSpec extends GebSpec {
 
         then:
             searchResourceForm.hasResource(resourceName)
-    }
 
-    def "some other added resources should also persist"() {
-        given:
-            def resourceName = "Ketchup"
-            to MainPage
-
-        expect:
-            at MainPage
-
-        when:
-            addResourceForm.addResource(resourceName)
-            to MainPage
-            searchResourceForm.searchResource(resourceName)
-
-        then:
-            searchResourceForm.hasResource(resourceName)
+        where:
+            resourceName << ["Ash", "Ketchup"]
     }
 
     def "only resources matching the search string should be visible"() {

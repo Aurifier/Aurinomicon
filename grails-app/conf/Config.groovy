@@ -3,7 +3,6 @@
 // in the classpath in ConfigSlurper format
 
 grails.config.locations = ["file:${userHome}/.grails/${appName}-config.groovy"]
-println "Looking for extra configuration at: " + grails.config.locations
 
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
