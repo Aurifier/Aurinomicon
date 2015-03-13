@@ -16,4 +16,7 @@ class SearchResourceModule extends Module {
     boolean hasResource(String resourceName) {
         js.hasResource(resourceName)
     }
+    boolean hasReaction(String resourceA, String resourceB) {
+        js.hasReaction(resourceA, resourceB)
+    }
 }

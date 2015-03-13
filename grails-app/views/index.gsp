@@ -13,6 +13,12 @@
             <input type="text" name="resourceName" />
             <button type="button" onclick="addResource(this.form.resourceName.value)">Add Resource</button>
         </form>
+        <form>
+            <input type="text" name="reactionName" />
+            <input type="text" name="resource1" />
+            <input type="text" name="resource2" />
+            <button type="button" onclick="addReaction(this.form.reactionName.value, this.form.resource1.value, this.form.resource2.value)">Add Reaction</button>
+        </form>
         <div id="cy" style="height: 100%"></div>
         <g:javascript>
             $('#cy').cytoscape({
@@ -27,6 +33,11 @@
             });
             function addResource(name) {
                 $.post('<g:createLink uri="/resources" />', {name: name});
+            }
+            function addReaction(name, thing1, thing2) {
+                var cy = $('#cy').cytoscape('get');
+                searchResource(thing1);
+                searchResource(thing2);
             }
             function searchResource(name) {
                 var cy = $('#cy').cytoscape('get');
@@ -47,6 +58,9 @@
                 }
 
                 return false;
+            }
+            function hasReaction(resourceA, resourceB) {
+                return true;
             }
         </g:javascript>
 	</body>
