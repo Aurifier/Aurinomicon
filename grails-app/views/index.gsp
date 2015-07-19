@@ -36,8 +36,12 @@
             }
             function addReaction(name, thing1, thing2) {
                 var cy = $('#cy').cytoscape('get');
-                searchResource(thing1);
-                searchResource(thing2);
+                cy.add([
+                    {group: "nodes", data: {id: thing1, name: thing1}},
+                    {group: "nodes", data: {id: thing2, name: thing2}},
+                    {group: "edges", data: {name: name, source: thing1, target: thing2}}
+                ]);
+                cy.layout({name: 'grid'});
             }
             function searchResource(name) {
                 var cy = $('#cy').cytoscape('get');
@@ -60,7 +64,7 @@
                 return false;
             }
             function hasReaction(resourceA, resourceB) {
-                return true;
+                return hasResource(resourceA) && hasResource(resourceB);
             }
         </g:javascript>
 	</body>
