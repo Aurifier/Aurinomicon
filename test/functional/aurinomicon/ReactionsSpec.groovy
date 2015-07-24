@@ -49,4 +49,27 @@ class ReactionsSpec extends GebSpec {
                 !searchResourceForm.hasReaction(resource, otherResource)
             }
     }
+
+    def "a reaction is the link between two resources, not just their presence"() {
+        given:
+            def resourceA = "mn"
+            def resourceB = "womn"
+            to MainPage
+
+        expect:
+            at MainPage
+
+        when:
+            addResourceForm.addResource(resourceA)
+            addResourceForm.addResource(resourceB)
+            searchResourceForm.searchResource(resourceA)
+            searchResourceForm.searchResource(resourceB)
+
+        then:
+            waitFor {
+                searchResourceForm.hasResource(resourceA)
+                searchResourceForm.hasResource(resourceB)
+                !searchResourceForm.hasReaction(resourceA, resourceB)
+            }
+    }
 }

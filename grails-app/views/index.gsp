@@ -64,7 +64,13 @@
                 return false;
             }
             function hasReaction(resourceA, resourceB) {
-                return hasResource(resourceA) && hasResource(resourceB);
+                var cy = $('#cy').cytoscape('get');
+                var edges = cy.edges("[source='" + resourceA + "'][target='" + resourceB + "']");
+                if(edges.size() > 0) {
+                    return true;
+                }
+
+                return false;
             }
         </g:javascript>
 	</body>
