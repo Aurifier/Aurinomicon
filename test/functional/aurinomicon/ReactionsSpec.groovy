@@ -72,4 +72,29 @@ class ReactionsSpec extends GebSpec {
                 !searchResourceForm.hasReaction(resourceA, resourceB)
             }
     }
+
+    def "added reactions should persist through reloading the page"() {
+        given:
+            def resourceA = "stuff"
+            def resourceB = "more stuff"
+            def reactionName = "pyrolysis"
+            to MainPage
+
+        expect:
+            at MainPage
+
+        when:
+            addResourceForm.addResource(resourceA)
+            addResourceForm.addResource(resourceB)
+            addReactionForm.addReaction(reactionName, resourceA, resourceB)
+            to MainPage
+            searchResourceForm.searchResource(resourceA)
+
+        then:
+            waitFor {
+                searchResourceForm.hasResource(resourceA)
+                searchResourceForm.hasResource(resourceB)
+                searchResourceForm.hasReaction(resourceA, resourceB)
+            }
+    }
 }

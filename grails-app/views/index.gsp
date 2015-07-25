@@ -46,6 +46,11 @@
             function searchResource(name) {
                 var cy = $('#cy').cytoscape('get');
                 $.getJSON('<g:createLink uri="/resources/" />', function(resources) {
+                    cy.add([
+                        {group: "nodes", data: {id: "stuff", name: "stuff"}},
+                        {group: "nodes", data: {id: "more stuff", name: "more stuff"}},
+                        {group: "edges", data: {name: "pyrolysis", source: "stuff", target: "more stuff"}}
+                    ]);
                     for(var i = 0; i < resources.length; i++)
                         if(name === resources[i].name) {
                             cy.add({group: "nodes", data: {name: resources[i].name}});
